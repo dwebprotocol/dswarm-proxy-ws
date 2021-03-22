@@ -1,43 +1,43 @@
-# hyperswarm-proxy-ws
-Proxy hyperswarm connections over websockets with auto-reconnect logic
+# @dswarm/proxy-ws
+Proxy dswarm connections over websockets with auto-reconnect logic
 
 ```
-npm -s hyperswarm-proxy-ws
+npm -s @dswarm/proxy-ws
 ```
 
-Uses the [hyperswarm-proxy](https://github.com/RangerMauve/hyperswarm-proxy) module.
+Uses the [dswarm-proxy](https://github.com/dwebprotocol/dswarm-proxy) module.
 
 ## Example
 
 ```js
 
-const HyperswarmServer = require('hyperswarm-proxy-ws/server')
+const DSwarmServer = require('@dswarm/proxy-ws/server')
 
 // Initialize the proxy server
-// Also specify any options for hyperswarm here
-// https://github.com/hyperswarm/hyperswarm
-const server = new HyperswarmServer()
+// Also specify any options for dswarm here
+// https://github.com/dswarm/dswarm
+const server = new DSwarmServer()
 
 // Start listening on clients via websocket protocol
 server.listen(3472)
 
 
-const HyperswarmClient = require('hyperswarm-proxy-ws/client')
+const DSwarmClient = require('@dswarm/proxy-ws/client')
 
-// Initialize a proxied hyperswarm
-// Also specify any options for hyperswarm-proxy client
-// https://github.com/RangerMauve/hyperswarm-proxy#client
-const swarm = new HyperswarmClient({
+// Initialize a proxied dswarm
+// Also specify any options for dswarm-proxy client
+// https://github.com/dwebprotocol/dswarm-proxy#client
+const swarm = new DSwarmClient({
   // Specify a list of proxy servers available to connect to
 	proxy: ['ws://127.0.0.1:3472']
 })
 
-// Same as with hyperswarm
+// Same as with dswarm
 swarm.on('connection', (connection, info) => {
 	const stream = getSomeStream(info.topic)
 
 	// Pipe the data somewhere
-	// E.G. hyperdrive.replicate()
+	// E.G. ddrive.replicate()
 	connection.pipe(stream).pipe(connection)
 })
 
