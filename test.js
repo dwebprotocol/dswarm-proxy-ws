@@ -1,4 +1,4 @@
-const hyperswarm = require('@hyperswarm/network')
+const dswarm = require('@dswarm/network')
 const Client = require('./client')
 const Server = require('./server')
 
@@ -8,7 +8,7 @@ const crypto = require('crypto')
 
 test('discover and make connections', async (t) => {
   // Each test should use a different topic to avoid connecting to other machines running the test
-  const TEST_TOPIC = makeTopic('HYPERSWARM-PROXY-TEST' + Math.random())
+  const TEST_TOPIC = makeTopic('DSWARM-PROXY-TEST' + Math.random())
   const TEST_MESSAGE = 'Hello World'
 
   t.plan(5)
@@ -16,7 +16,7 @@ test('discover and make connections', async (t) => {
   try {
     const server = new Server()
 
-    const network = hyperswarm({
+    const network = dswarm({
       socket: handleSocket
     })
 
